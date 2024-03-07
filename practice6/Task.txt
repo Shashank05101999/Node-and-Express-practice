@@ -1,0 +1,13 @@
+RestAPI - JSON
+
+
+Get/users -HTML Documents Render
+GET/api/users =List all users     -Done
+GET/users/1 - get the user with ID 1
+GET/users/2 - get the users with ID 2
+
+POST/ users - Create the new users 
+
+PATCH/users/1 - Edit the user with Id 1
+
+DELETE /users/1 - delete the users with Id 1
