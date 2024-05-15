@@ -1,29 +1,13 @@
 const express = require("express");
+const fs = require("fs");
 const users = require("./MOCK_DATA.json");
 const app = express();
 const port = 3000;
 
-app
+// middleware -plugin
+app.use(express.urlencoded({ extended: false }));
 
-  .route("/api/users/:id")
-  .get((req, res) => {
-    const id = Number(req.params.id);
-    const users = users.find((users) => users.id === id);
-    return res.json(users);
-  })
-  .patch((req, res) => {
-    // Edit with ID
-    return res.json({ Status: "pending" });
-  })
-  .delete((req, res) => {
-    // delete with id
-    return res.json({ Status: "pending" });
-  });
-
-app.get("/api/users", (req, res) => {
-  return res.json(users);
-});
-
+//routes
 app.get("/users", (req, res) => {
   const html = `
   <ul>
@@ -33,10 +17,28 @@ app.get("/users", (req, res) => {
   res.send(html);
 });
 
-app.get("/api/users/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const users = users.find((users) => users.id === id);
-  return res.json(users);
+app
+  .route("/api/users/:id")
+  .get((req, res) => {
+    const id = Number(req.params.id);
+    const users = users.find((users) => users.id === id);
+    return res.json(users);
+  })
+  .patch((req, res) => {
+    // TODO: Edit with ID
+    return res.json({ status: "pending" });
+  })
+  .delete((req, res) => {
+    // TODO: delete with id
+    return res.json({ status: "pending" });
+  });
+app.post("/api/users", (req, res) => {
+  // TODO: create with user
+  const body = req.body;
+  users.push({...body,id: users.length + 1});
+  fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
+    return res.json({ status: "pending" });
+  });
 });
 
 app.listen(port, () => console.log(`Server stared`));

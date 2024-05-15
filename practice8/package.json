@@ -1,0 +1,14 @@
+{
+  "name": "your-project-name",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node middleware.js"
+  },
+  "dependencies": {
+    "cjs": "^0.0.11",
+    "express": "^4.18.3",
+    "mongoose": "^8.2.2",
+    "node": "^21.7.1",
+    "url": "^0.11.3"
+  }
+}
